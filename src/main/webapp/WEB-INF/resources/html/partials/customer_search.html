@@ -1,0 +1,32 @@
+<div>
+	<h2>Customer Search</h2>
+</div>
+
+<div class="filter">
+	<div class="navbar navbar-default">
+	  <div class="navbar-header">
+	  	<a class="navbar-brand">Filter</a>
+	  </div>
+	
+	  <div class="navbar-form navbar-left">
+		  <div class="input-group">
+			  <input type="text" class="form-control" data-ng-model="filter.full_name" placeholder="Filter by name..." />
+		  </div>
+	  </div>
+	</div>
+</div>
+
+<div class="filter-label">
+	<b>Filtering by: {{ filter.full_name }}</b>
+</div>
+
+<br/>
+
+<div class="panel-content" data-ng-init="init()">	
+	<div class="panel panel-primary inline" data-ng-repeat="customer in customers | filter:filter.full_name | orderBy:'lastName'">
+	  <div class="panel-heading">{{customer.fullName}}</div>
+	  <div class="panel-body">
+	    To add additional content
+	  </div>
+	</div>
+</div>
