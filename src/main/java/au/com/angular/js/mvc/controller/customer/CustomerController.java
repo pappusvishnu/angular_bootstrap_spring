@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.com.angular.js.mvc.model.customer.Customer;
 
-
 @Controller
 @RequestMapping(value = "/customer")
 public class CustomerController {
