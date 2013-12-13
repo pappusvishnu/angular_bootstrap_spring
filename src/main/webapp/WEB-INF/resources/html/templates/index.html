@@ -14,12 +14,20 @@
 		<script src="resources/js/custom/controller.js"></script>
 		<script src="resources/js/custom/service.js"></script>
 		
+		<script src="resources/js/custom/menu.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-theme.css">
 		
 		<link rel="stylesheet" type="text/css" href="resources/css/custom/styles.css">
 		
 		<title data-ng-bind="title">Customer Library</title>
+		
+		<script>
+			$(document).ready(function() {
+				$('.menu li a').on('click', function() { toggleMenuActive($(this)) });
+			});
+		</script>
 	</head>
 	<body>
 		<div class="page-header">
