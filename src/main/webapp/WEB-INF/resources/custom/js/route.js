@@ -15,7 +15,7 @@ app.config([ '$routeProvider', '$locationProvider', '$httpProvider', function($r
 		})
 		.otherwise({ redirectTo : "/main"});
 	
-	//configure $http to show a login dialog whenever a 401 unauthorized response arrives
+	//configure $http to view a login dialog whenever a 401 unauthorized response arrives
     $httpProvider.responseInterceptors.push(function ($rootScope, $q) {
         return function (promise) {
             return promise.then(
