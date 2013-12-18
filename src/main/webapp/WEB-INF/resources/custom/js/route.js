@@ -16,7 +16,7 @@ app.config([ '$routeProvider', '$locationProvider', '$httpProvider', function($r
 		})
 		.otherwise({ redirectTo : "/main"});
 	
-	//configure $http to view a login dialog whenever a 401 unauthorized response arrives
+	//configure $http to view a login whenever a 401 unauthorized response arrives
     $httpProvider.responseInterceptors.push(function ($rootScope, $q) {
         return function (promise) {
             return promise.then(
@@ -83,7 +83,10 @@ app.run(function($rootScope, $http, $location, Base64Service) {
      * On 'event:loginRequest' send credentials to the server.
      */
     $rootScope.$on('event:loginRequest', function (event, username, password) {
+    	// set the basic authentication header that will be parsed in the next request and used to authenticate
         httpHeaders.common['Authorization'] = 'Basic ' + Base64Service.encode(username + ':' + password);
+        
+        // get the authenticated user and set them in the root scope
         $http.get('user/authenticated/retrieve').success(function (data) {
             $rootScope.user = data;
             $rootScope.$broadcast('event:loginConfirmed');
@@ -91,10 +94,11 @@ app.run(function($rootScope, $http, $location, Base64Service) {
     });
 
     /**
-     * On 'logoutRequest' invoke logout on the server and broadcast 'event:loginRequired'.
+     * On 'logoutRequest' invoke logout on the server.
      */
     $rootScope.$on('event:logoutRequest', function () {
         httpHeaders.common['Authorization'] = null;
         originalLocation = null;
+        $rootScope.requests401 = [];
     });
 });

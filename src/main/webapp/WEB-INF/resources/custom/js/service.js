@@ -10,6 +10,18 @@ app.service('CustomerService', function($http, $q) {
 	};
 });
 
+app.service('AuthenticationService', function($http, $q) {
+	this.logout = function() {
+		var d = $q.defer();
+		
+		$http.get('j_spring_security_logout').success(function() {
+			d.resolve();
+		});
+		
+		return d.promise;
+	};
+});
+
 app.service('Base64Service', function () {
     var keyStr = "ABCDEFGHIJKLMNOP" +
         "QRSTUVWXYZabcdef" +
