@@ -1,4 +1,4 @@
-package au.com.angular.js.mvc.model.customer;
+package au.com.example.spring.mvc.model.customer;
 
 public class Customer {
 

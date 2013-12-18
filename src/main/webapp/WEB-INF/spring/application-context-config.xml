@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
-	<context:component-scan base-package="au.com.angular.js" />
+	<context:component-scan base-package="au.com.example.spring" />
 
 	<!-- Configures the @Controller programming model -->
 	<mvc:annotation-driven />
