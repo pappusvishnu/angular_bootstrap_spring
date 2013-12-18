@@ -47,8 +47,14 @@ app.config([ '$routeProvider', '$locationProvider', '$httpProvider', function($r
 app.run(function($rootScope, $http, $location, Base64Service) {
     
     /* Reset error when a new view is loaded */
-	$rootScope.$on('$viewContentLoaded', function() {
-		delete $rootScope.error;
+//	$rootScope.$on('$viewContentLoaded', function() {
+//		delete $rootScope.error;
+//	});
+	
+	$rootScope.$on("$routeChangeStart", function() {
+        $http.get('user/authenticated/retrieve').success(function (data) {
+            $rootScope.user = data;
+        });
 	});
 	
 	/**
