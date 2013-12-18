@@ -26,7 +26,7 @@ app.controller('CustomerController', function ($scope, CustomerService) {
 app.controller('LoginController', function($scope, $location) {
 	$scope.login = function () {
 		$scope.$emit('event:loginRequest', $scope.username, $scope.password);
-		$location.path("/main");
+		$location.path(originalLocation);
 		
 		console.debug("Login event requested.");
     };

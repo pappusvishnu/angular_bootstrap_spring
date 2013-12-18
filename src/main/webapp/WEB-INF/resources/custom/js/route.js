@@ -1,4 +1,5 @@
 var httpHeaders;
+var originalLocation;
 
 app.config([ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
 	$routeProvider
@@ -56,6 +57,7 @@ app.run(function($rootScope, $http, $location, Base64Service) {
     $rootScope.requests401 = [];
 
     $rootScope.$on('event:loginRequired', function () {
+    	originalLocation = $location.path();
         $location.path('/login');
     });
 
@@ -93,5 +95,6 @@ app.run(function($rootScope, $http, $location, Base64Service) {
      */
     $rootScope.$on('event:logoutRequest', function () {
         httpHeaders.common['Authorization'] = null;
+        originalLocation = null;
     });
 });
