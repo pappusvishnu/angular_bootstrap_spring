@@ -29,4 +29,11 @@ public class UserController {
 
 		return (UserDetails)authentication.getPrincipal();
 	}
+	
+	@RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public void authenticate()
+	{
+		// endpoint for the basic authentication request to pass
+	}
 }
