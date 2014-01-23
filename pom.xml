@@ -274,11 +274,7 @@
 
 	<developers>
 		<developer>
-			<id>rleggett</id>
 			<name>Robert Leggett</name>
-			<email>robert.leggett@sensis.com.au</email>
-			<organization>UXC PS</organization>
-			<organizationUrl>http://www.uxcps.com.au/</organizationUrl>
 			<roles>
 				<role>Solution Architect</role>
 			</roles>
