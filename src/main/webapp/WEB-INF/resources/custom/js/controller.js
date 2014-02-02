@@ -1,12 +1,13 @@
 app.controller('MainController', function ($scope, $rootScope, $location, AuthenticationService) {
 	$scope.logout = function () {
+		$scope.$emit('event:logoutRequest');
+		
         AuthenticationService.logout().then(function() {
         	$rootScope.user = null;
             $scope.username = $scope.password = null;
-            $scope.$emit('event:logoutRequest');
             $location.path('/main');
             
-            console.debug("Logout event requested.");
+            console.debug("Logout Completed.");
         });
     };
 });
