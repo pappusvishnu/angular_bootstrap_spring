@@ -5,12 +5,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping(value = "/user")
 public class UserController {
 	
@@ -18,9 +17,7 @@ public class UserController {
 	private UserDetailsService userService;
 
 	@RequestMapping(value = "/authenticated/retrieve", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	public UserDetails authenticatedUser()
-	{
+	public UserDetails authenticatedUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		
 		if(authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
@@ -31,9 +28,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody
-	public void authenticate()
-	{
+	public void authenticate() {
 		// endpoint for the basic authentication request to pass
 	}
 }
