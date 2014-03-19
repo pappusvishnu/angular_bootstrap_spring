@@ -1,14 +1,14 @@
 angular_bootstrap_spring
 ========================
 
-Angular JS with Bootstrap and Spring 3 and Spring Security
+Angular JS with Bootstrap and Spring 4 and Spring Security
 
 This example is an angular js single page application (SPA) with bootstrap for the widgets and styling.
 
-Spring 3: 
+Spring 4: 
 	Used to create RESTful controller interfaces which in turn gets called through ajax requests.
 	
-Spring Security:
+Spring Security 3:
 	Uses a simple setup with a http basic entry point configured that will always return http status unauthorised (401),
 	this will result in angular js intercepting the response and if a 401 is detected an login event will be fired.
 	A basic authentication will be triggered and the user credentials will be validated against the user service that
