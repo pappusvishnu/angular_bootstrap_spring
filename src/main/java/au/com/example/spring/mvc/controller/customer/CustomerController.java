@@ -4,22 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import au.com.example.spring.mvc.model.customer.Customer;
 
-@Controller
+@RestController
 @RequestMapping(value = "/customer")
 public class CustomerController {
 
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value = "/customers/retrieve", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	public List<Customer> getCustomers()
-	{
+	public List<Customer> getCustomers() {
 		List<Customer> customers = new ArrayList<Customer>();
 		
 		customers.add(new Customer("Robert Leggett", "Robert", "Leggett"));
