@@ -14,25 +14,42 @@ app.controller('MainController', function ($scope, $rootScope, $location, Authen
 
 app.controller('CustomerController', function ($scope, CustomerService) {
 	$scope.init = function() {
-		getCustomers();
+        CustomerService.getCustomers().then(function(response) {
+            $scope.customers = response;
+
+            console.debug("Customers Retrieved");
+        });
 	};
 
-	getCustomers = function() {
-		CustomerService.getCustomers().then(function(response) {
-			$scope.customers = response;
+    $scope.delete = function(id) {
+        CustomerService.deleteCustomer(id).then(function(response) {
 
-            $scope.$evalAsync(function() {
-                initializeCustomerSearch();
+            angular.forEach($scope.customers, function(customer, index) {
+                if(id == customer.id) {
+                    $scope.customers.splice(index, 1);
+                }
             });
-			
-			console.debug("Customers Retrieved");
-		});
-	};
 
-    deleteCustomer = function(id) {
-      CustomerService.deleteCustomer(id).then(function(response) {
-          console.debug("Customers " + id + " Has Been Deleted");
-      });
+            console.debug("Customers " + id + " Has Been Deleted");
+        });
+    };
+
+    $scope.edit = function(id) {
+        $scope.$evalAsync(function() {
+            isEditButtonVisible(id, false);
+        });
+    };
+
+    $scope.save = function(id) {
+        $scope.$evalAsync(function() {
+            isEditButtonVisible(id, true);
+        });
+    };
+
+    $scope.cancel = function(id) {
+        $scope.$evalAsync(function() {
+            isEditButtonVisible(id, true);
+        });
     };
 });
 

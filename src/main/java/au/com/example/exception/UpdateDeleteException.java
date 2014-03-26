@@ -6,4 +6,8 @@ public class UpdateDeleteException extends Exception {
 	public UpdateDeleteException(String message) {
 		super(message);
 	}
+
+    public UpdateDeleteException(String message, Throwable e) {
+        super(message, e);
+    }
 }

@@ -50,10 +50,10 @@ public class CustomerControllerUnitTest {
 	private List<Customer> getTestCustomers() {
 		List<Customer> customers = new ArrayList<Customer>();
 
-		customers.add(new Customer(1L, "Test User1", "Test", "User1"));
-		customers.add(new Customer(2L, "Test User2", "Test", "User2"));
-		customers.add(new Customer(3L, "Test User3", "Test", "User3"));
-		customers.add(new Customer(4L, "Test User4", "Test", "User4"));
+		customers.add(new Customer(1L, "Test", "User1"));
+		customers.add(new Customer(2L, "Test", "User2"));
+		customers.add(new Customer(3L, "Test", "User3"));
+		customers.add(new Customer(4L, "Test", "User4"));
 
 		return customers;
 	}

@@ -26,6 +26,7 @@ public class BaseDao {
 
 	// === Methods ===
 
+    @SuppressWarnings("unchecked")
 	protected <T extends Cloneable> T loadDataSingle(Class<T> oType, QueryString queryString) {
 		EntityManager entityManager = emf.createEntityManager();
 
@@ -116,4 +117,37 @@ public class BaseDao {
 
 		return rowsModified;
 	}
+
+    protected <T extends Cloneable> boolean deleteSingleData(Class<T> oType, Long id) throws UpdateDeleteException {
+        EntityManager entityManager = getEmf().createEntityManager();
+
+        try	{
+            EntityTransaction tx = null;
+
+            try {
+                tx = entityManager.getTransaction();
+
+                tx.begin();
+
+                entityManager.remove(entityManager.find(oType, id));
+
+                tx.commit();
+            }
+            catch (Exception e) {
+                log.error("Exception during deleting " + id + ": " + e.getMessage());
+
+                throw new UpdateDeleteException("Unable to delete data " + id, e);
+            }
+            finally	{
+                if (tx != null && tx.isActive()) {
+                    tx.rollback();
+                }
+            }
+        }
+        finally	{
+            entityManager.close();
+        }
+
+        return true;
+    }
 }
