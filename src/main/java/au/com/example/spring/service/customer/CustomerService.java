@@ -6,4 +6,6 @@ import au.com.example.spring.mvc.model.customer.Customer;
 
 public interface CustomerService {
 	List<Customer> getCustomers();
+
+    boolean deleteCustomer(Long id);
 }

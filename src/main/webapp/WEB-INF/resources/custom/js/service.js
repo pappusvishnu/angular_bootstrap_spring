@@ -8,6 +8,16 @@ app.service('CustomerService', function($http, $q) {
 		
 		return d.promise;
 	};
+
+    this.deleteCustomer = function(id) {
+        var d = $q.defer();
+
+        $http.delete('customer/delete/' + id).success(function(response) {
+            d.resolve(response);
+        });
+
+        return d.promise;
+    };
 });
 
 app.service('AuthenticationService', function($http, $q) {

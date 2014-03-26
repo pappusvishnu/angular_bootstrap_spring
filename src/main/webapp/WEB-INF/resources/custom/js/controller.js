@@ -16,14 +16,24 @@ app.controller('CustomerController', function ($scope, CustomerService) {
 	$scope.init = function() {
 		getCustomers();
 	};
-	
+
 	getCustomers = function() {
 		CustomerService.getCustomers().then(function(response) {
 			$scope.customers = response;
+
+            $scope.$evalAsync(function() {
+                initializeCustomerSearch();
+            });
 			
 			console.debug("Customers Retrieved");
 		});
 	};
+
+    deleteCustomer = function(id) {
+      CustomerService.deleteCustomer(id).then(function(response) {
+          console.debug("Customers " + id + " Has Been Deleted");
+      });
+    };
 });
 
 app.controller('LoginController', function($scope, $location) {

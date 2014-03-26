@@ -17,11 +17,18 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		List<Customer> customers = new ArrayList<Customer>();
 
-		customers.add(new Customer("Robert Leggett", "Robert", "Leggett"));
-		customers.add(new Customer("Diana Lopez", "Diana", "Lopez"));
-		customers.add(new Customer("Sara Leggett", "Sara", "Leggett"));
-		customers.add(new Customer("Rafael Leggett", "Rafael", "Leggett"));
+		customers.add(new Customer(1L, "Robert Leggett", "Robert", "Leggett"));
+		customers.add(new Customer(2L, "Diana Lopez", "Diana", "Lopez"));
+		customers.add(new Customer(3L, "Sara Leggett", "Sara", "Leggett"));
+		customers.add(new Customer(4L, "Rafael Leggett", "Rafael", "Leggett"));
 
 		return customers;
 	}
+
+    @Override
+    public boolean deleteCustomer(Long id) {
+        // TODO: once DB is established remove record from DB
+
+        return true;
+    }
 }

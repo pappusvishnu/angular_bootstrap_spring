@@ -23,10 +23,32 @@
 <br/>
 
 <div class="panel-content" data-ng-init="init()">	
-	<div class="panel panel-primary inline" data-ng-repeat="customer in customers | filter:filter.full_name | orderBy:'lastName'">
-	  <div class="panel-heading">{{customer.fullName}}</div>
-	  <div class="panel-body">
-	    To add additional content
+	<div id="{{customer.id}}" style="min-width: 250px;" class="panel panel-primary inline" data-ng-repeat="customer in customers | filter:filter.full_name | orderBy:'lastName'">
+	  <div class="panel-heading clearfix">
+          <div class="panel-title pull-left"><b>{{customer.fullName}}</b></div>
+          <div class="pull-right">
+              <button type="button" class="btn btn-default btn-xs customer_delete">
+                  <span class="glyphicon glyphicon-trash" />
+              </button>
+          </div>
+      </div>
+	  <div class="panel-body clearfix">
+	      <div>ID: {{customer.id}}</div>
+          <div>First: {{customer.firstName}}</div>
+          <div>Last: {{customer.lastName}}</div>
 	  </div>
+      <div class="panel-footer clearfix">
+          <div class="pull-right">
+              <button type="button" class="btn btn-default btn-xs customer_edit">
+                  <span class="glyphicon glyphicon-edit" />
+              </button>
+              <button type="button" class="btn btn-default btn-xs customer_save" style="display:none;">
+                  <span class="glyphicon glyphicon-floppy-save" />
+              </button>
+              <button type="button" class="btn btn-default btn-xs customer_cancel" style="display:none;">
+                  <span class="glyphicon glyphicon-remove" />
+              </button>
+          </div>
+      </div>
 	</div>
 </div>
