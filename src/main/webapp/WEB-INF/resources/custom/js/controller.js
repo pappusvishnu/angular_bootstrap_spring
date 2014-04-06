@@ -16,14 +16,6 @@ app.controller('CustomerController', function ($scope, CustomerService) {
 	$scope.init = function() {
         CustomerService.getCustomers().then(function(response) {
             $scope.customers = response;
-
-            $scope.$watch('$viewContentLoaded', function(){
-                angular.forEach($scope.customers, function(customer, index) {
-                    $scope.$evalAsync(function() {
-                        initializeEditableField(customer.id);
-                    });
-                });
-            });
         });
 	};
 
@@ -40,23 +32,12 @@ app.controller('CustomerController', function ($scope, CustomerService) {
         });
     };
 
-    $scope.edit = function(id) {
-        $scope.$evalAsync(function() {
-            isEditButtonVisible(id, false);
-        });
-    };
-
     $scope.save = function(id) {
-        $scope.$evalAsync(function() {
-            isEditButtonVisible(id, true);
-        });
-    };
 
-    $scope.cancel = function(id) {
-        $scope.$evalAsync(function() {
-            isEditButtonVisible(id, true);
-
-            // TODO: reset values to original if required
+        angular.forEach($scope.customers, function(customer, index) {
+            if(id == customer.id) {
+                console.debug(customer.firstName);
+            }
         });
     };
 });

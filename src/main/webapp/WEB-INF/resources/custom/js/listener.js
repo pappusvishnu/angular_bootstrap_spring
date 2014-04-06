@@ -1,5 +1,7 @@
-app.run(function($rootScope, $http, $location, Base64Service) {
-	
+app.run(function($rootScope, $http, $location, Base64Service, editableOptions) {
+
+    editableOptions.theme = 'bs3';
+
 	$rootScope.$on("$routeChangeStart", function() {
         $http.get('user/authenticated/retrieve').success(function (data) {
             $rootScope.user = data;
