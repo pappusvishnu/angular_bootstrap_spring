@@ -26,6 +26,10 @@ div.panel-content {
 	display:	inline;
 }
 
+div.editable-content {
+    min-height:	30px;
+}
+
 div.inline {
 	display: 		inline-block;
 	margin-right: 	5px;

@@ -23,7 +23,7 @@
 <br/>
 
 <div class="panel-content" data-ng-init="init()">	
-	<div id="{{customer.id}}" style="min-width: 250px;" class="panel panel-primary inline" data-ng-repeat="customer in customers | filter:search:strict | orderBy:'lastName'">
+	<div id="{{customer.id}}" style="min-width: 290px;" class="panel panel-primary inline" data-ng-repeat="customer in customers | filter:search:strict | orderBy:'lastName'">
 	  <div class="panel-heading clearfix">
           <div class="panel-title pull-left"><b>{{customer.firstName}}&nbsp;{{customer.lastName}}</b></div>
           <div class="pull-right">
@@ -33,9 +33,9 @@
           </div>
       </div>
 	  <div class="panel-body clearfix">
-	      <div>ID: {{customer.id}}</div>
-          <div>First: {{customer.firstName}}</div>
-          <div>Last: {{customer.lastName}}</div>
+	      <div class="editable-content">{{customer.id}}</div>
+          <div class="editable-content"><a id="customer_first">{{customer.firstName}}</a></div>
+          <div class="editable-content"><a id="customer_last">{{customer.lastName}}</a></div>
 	  </div>
       <div class="panel-footer clearfix">
           <div class="pull-right">

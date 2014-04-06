@@ -17,7 +17,13 @@ app.controller('CustomerController', function ($scope, CustomerService) {
         CustomerService.getCustomers().then(function(response) {
             $scope.customers = response;
 
-            console.debug("Customers Retrieved");
+            $scope.$watch('$viewContentLoaded', function(){
+                angular.forEach($scope.customers, function(customer, index) {
+                    $scope.$evalAsync(function() {
+                        initializeEditableField(customer.id);
+                    });
+                });
+            });
         });
 	};
 
@@ -49,6 +55,8 @@ app.controller('CustomerController', function ($scope, CustomerService) {
     $scope.cancel = function(id) {
         $scope.$evalAsync(function() {
             isEditButtonVisible(id, true);
+
+            // TODO: reset values to original if required
         });
     };
 });
