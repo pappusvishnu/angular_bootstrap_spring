@@ -53,6 +53,21 @@ public class CustomerDaoImpl extends BaseDao implements CustomerDao {
         return success;
     }
 
+    @Transactional
+    @Override
+    public boolean saveCustomer(Customer customer) {
+        boolean success = false;
+
+        try {
+            success = customer.getId() == null ? persistSingleData(toCustomerEntity(customer)) : updateSingleData(toCustomerEntity(customer));
+        }
+        catch(UpdateDeleteException e) {
+            log.error("Error saving customer with id: " + customer.getId());
+        }
+
+        return success;
+    }
+
     // ======== Helpers =========
 
     private Customer toCustomer(CustomerEntity customerEntity) {
@@ -63,5 +78,15 @@ public class CustomerDaoImpl extends BaseDao implements CustomerDao {
         }
 
         return customer;
+    }
+
+    private CustomerEntity toCustomerEntity(Customer customer) {
+        CustomerEntity entity = null;
+
+        if(customer != null) {
+            entity = new CustomerEntity(customer.getId(), customer.getFirstName(), customer.getLastName());
+        }
+
+        return entity;
     }
 }

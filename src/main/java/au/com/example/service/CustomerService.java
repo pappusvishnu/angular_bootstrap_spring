@@ -8,4 +8,6 @@ public interface CustomerService {
 	List<Customer> getCustomers();
 
     boolean deleteCustomer(Long id);
+
+    boolean saveCustomer(Customer customer);
 }

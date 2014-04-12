@@ -150,4 +150,70 @@ public class BaseDao {
 
         return true;
     }
+
+    protected boolean persistSingleData(Object entity) throws UpdateDeleteException {
+        EntityManager entityManager = getEmf().createEntityManager();
+
+        try	{
+            EntityTransaction tx = null;
+
+            try {
+                tx = entityManager.getTransaction();
+
+                tx.begin();
+
+                entityManager.persist(entity);
+
+                tx.commit();
+            }
+            catch (Exception e) {
+                log.error("Exception during persist: " + e.getMessage());
+
+                throw new UpdateDeleteException("Unable to persist data", e);
+            }
+            finally	{
+                if (tx != null && tx.isActive()) {
+                    tx.rollback();
+                }
+            }
+        }
+        finally	{
+            entityManager.close();
+        }
+
+        return true;
+    }
+
+    protected boolean updateSingleData(Object entity) throws UpdateDeleteException {
+        EntityManager entityManager = getEmf().createEntityManager();
+
+        try	{
+            EntityTransaction tx = null;
+
+            try {
+                tx = entityManager.getTransaction();
+
+                tx.begin();
+
+                entityManager.merge(entity);
+
+                tx.commit();
+            }
+            catch (Exception e) {
+                log.error("Exception during merge: " + e.getMessage());
+
+                throw new UpdateDeleteException("Unable to merge data", e);
+            }
+            finally	{
+                if (tx != null && tx.isActive()) {
+                    tx.rollback();
+                }
+            }
+        }
+        finally	{
+            entityManager.close();
+        }
+
+        return true;
+    }
 }

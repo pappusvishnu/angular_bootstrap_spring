@@ -4,10 +4,7 @@ import au.com.example.mvc.model.customer.Customer;
 import au.com.example.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,11 @@ public class CustomerController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
     public boolean deleteCustomer(@PathVariable Long id) {
         return customerService.deleteCustomer(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json")
+    public boolean saveCustomer(@RequestBody Customer customer) {
+        return customerService.saveCustomer(customer);
     }
 }

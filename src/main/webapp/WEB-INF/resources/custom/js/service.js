@@ -18,6 +18,16 @@ app.service('CustomerService', function($http, $q) {
 
         return d.promise;
     };
+
+    this.saveCustomer = function(customer) {
+        var d = $q.defer();
+
+        $http.post('customer/save', customer).success(function(response) {
+            d.resolve(response);
+        });
+
+        return d.promise;
+    };
 });
 
 app.service('AuthenticationService', function($http, $q) {

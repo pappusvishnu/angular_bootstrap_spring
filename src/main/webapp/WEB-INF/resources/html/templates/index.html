@@ -2,9 +2,9 @@
 
 <html data-ng-app="app">
 	<head>
+        <script src="resources/jquery/js/jquery-2.0.3.js"></script>
 		<script src="resources/angularjs/js/angular.js"></script>
 		<script src="resources/angularjs/js/angular-route.js"></script>
-		<script src="resources/jquery/js/jquery-2.0.3.js"></script>
 		<script src="resources/bootstrap/js/bootstrap.js"></script>
         <script src="resources/angular-xeditable/js/xeditable.js"></script>
 		<script src="resources/custom/js/app.js"></script>
@@ -48,7 +48,8 @@
 				</ul>
 			</div>
 		</div>
-		
+
+        <!-- PARTIALS -->
 		<div class="section">
 			<div class="alert alert-danger" data-ng-show="error">{{error}}</div>
 			<div data-ng-view></div>
